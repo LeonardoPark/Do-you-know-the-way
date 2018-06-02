@@ -7,18 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using CodingGame_KOI.game;
+using CodingGame_KOI.communication;
 
 namespace CodingGame_KOI
 {
     public partial class frmGame : Form
     {
-
         // constanats
         private const int REFRESH_TIME = 10;
+        private const string BT_DATA_UP = "1";
+        private const string BT_DATA_DOWN = "2";
+        private const string BT_DATA_LEFT = "3";
+        private const string BT_DATA_RIGHT = "4";
+        private const string BT_DATA_REMOVE = "5";
+        private const string BT_DATA_RUN = "6";
 
         // the objects that related game.
+        private bool isRunning = false;
         private Timer tmRefresh;
+        private Timer tmRunner;
         private Character character;
+
+        // objects
+        private CodeblockManager codeblockManager = null;
+        private List<Character.DIRECTION> codeblocks = null;
+        private Bluetooth bluetooth = null;
 
         public frmGame()
         {
@@ -27,6 +40,7 @@ namespace CodingGame_KOI
 
         private void frmGame_Load(object sender, EventArgs e)
         {
+            codeblockManager = new CodeblockManager(this, this.picCodeblocks);
             initCharacter();
             initEvent();
         }
@@ -37,6 +51,40 @@ namespace CodingGame_KOI
             tmRefresh.Tick += new EventHandler(refresh);
             tmRefresh.Interval = REFRESH_TIME;
             tmRefresh.Enabled = true;
+
+            tmRunner = new Timer();
+            tmRunner.Tick += new EventHandler(run);
+            tmRunner.Interval = REFRESH_TIME;
+            tmRunner.Enabled = false;
+        }
+
+
+        private void execute()
+        {
+            if (!isRunning)
+            {
+                tmRunner.Enabled = true;
+                codeblocks = codeblockManager.getCodeblocks();
+                isRunning = true;
+            }
+        }
+
+        private void run(object sender, EventArgs e)
+        {
+            if (codeblocks != null && codeblocks.Count >= 1)
+            {
+                Character.DIRECTION dir = codeblocks.ElementAt(0);
+                if (character.move(dir))
+                {
+                    codeblocks.RemoveAt(0);
+                }
+            }
+            else
+            {
+                isRunning = false;
+                tmRunner.Enabled = false;
+                codeblocks = null;
+            }   
         }
 
         private void refresh(object sender, EventArgs e)
@@ -97,16 +145,68 @@ namespace CodingGame_KOI
             switch(e.KeyCode)
             {
                 case Keys.Up:
-                    character.move(Character.DIRECTION.UP);
+                    codeblockManager.addBlock(Character.DIRECTION.UP);
                     break;
                 case Keys.Down:
-                    character.move(Character.DIRECTION.DOWN);
+                    codeblockManager.addBlock(Character.DIRECTION.DOWN);
                     break;
                 case Keys.Left:
-                    character.move(Character.DIRECTION.LEFT);
+                    codeblockManager.addBlock(Character.DIRECTION.LEFT);
                     break;
                 case Keys.Right:
-                    character.move(Character.DIRECTION.RIGHT);
+                    codeblockManager.addBlock(Character.DIRECTION.RIGHT);
+                    break;
+                case Keys.Back:
+                    codeblockManager.removeLastBlock();
+                    break;
+                case Keys.Space:
+                    execute();
+                    break;
+            }
+        }
+
+        private void btnOpenSerial_Click(object sender, EventArgs args)
+        {
+            if (bluetooth != null)
+            {
+                bluetooth.close();
+                bluetooth = null;
+            }
+            bluetooth = new Bluetooth(this, txtSerialPortName.Text, bluetoothDataReceive);
+            try
+            {
+                bluetooth.open();
+                pnSerialSetting.Visible = false;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("시리얼 포트 연결에 실패했습니다. 다시 시도해주세요.\n에러메세지:" + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            
+        }
+
+        private void bluetoothDataReceive(string msg)
+        {
+            switch(msg)
+            {
+                case BT_DATA_UP:
+                    codeblockManager.addBlock(Character.DIRECTION.UP);
+                    break;
+                case BT_DATA_DOWN:
+                    codeblockManager.addBlock(Character.DIRECTION.DOWN);
+                    break;
+                case BT_DATA_LEFT:
+                    codeblockManager.addBlock(Character.DIRECTION.LEFT);
+                    break;
+                case BT_DATA_RIGHT:
+                    codeblockManager.addBlock(Character.DIRECTION.RIGHT);
+                    break;
+                case BT_DATA_REMOVE:
+                    codeblockManager.removeLastBlock();
+                    break;
+                case BT_DATA_RUN:
+                    execute();
                     break;
             }
         }

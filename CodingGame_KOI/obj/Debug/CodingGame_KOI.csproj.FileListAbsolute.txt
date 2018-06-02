@@ -25,3 +25,12 @@ C:\Users\Leo\Desktop\SimpleGameWithBluetooth-master\SimpleGameWithBluetooth-mast
 C:\Users\Leo\Desktop\SimpleGameWithBluetooth-master\SimpleGameWithBluetooth-master\CodingGame_KOI\obj\Debug\CodingGame_KOI.csproj.CoreCompileInputs.cache
 C:\Users\Leo\Desktop\SimpleGameWithBluetooth-master\SimpleGameWithBluetooth-master\CodingGame_KOI\obj\Debug\CodingGame_KOI.exe
 C:\Users\Leo\Desktop\SimpleGameWithBluetooth-master\SimpleGameWithBluetooth-master\CodingGame_KOI\obj\Debug\CodingGame_KOI.pdb
+C:\Users\lifei\Desktop\programming\csharp\Do-you-know-the-way\CodingGame_KOI\bin\Debug\CodingGame_KOI.exe
+C:\Users\lifei\Desktop\programming\csharp\Do-you-know-the-way\CodingGame_KOI\bin\Debug\CodingGame_KOI.pdb
+C:\Users\lifei\Desktop\programming\csharp\Do-you-know-the-way\CodingGame_KOI\obj\Debug\CodingGame_KOI.csprojAssemblyReference.cache
+C:\Users\lifei\Desktop\programming\csharp\Do-you-know-the-way\CodingGame_KOI\obj\Debug\CodingGame_KOI.frmGame.resources
+C:\Users\lifei\Desktop\programming\csharp\Do-you-know-the-way\CodingGame_KOI\obj\Debug\CodingGame_KOI.Properties.Resources.resources
+C:\Users\lifei\Desktop\programming\csharp\Do-you-know-the-way\CodingGame_KOI\obj\Debug\CodingGame_KOI.csproj.GenerateResource.cache
+C:\Users\lifei\Desktop\programming\csharp\Do-you-know-the-way\CodingGame_KOI\obj\Debug\CodingGame_KOI.csproj.CoreCompileInputs.cache
+C:\Users\lifei\Desktop\programming\csharp\Do-you-know-the-way\CodingGame_KOI\obj\Debug\CodingGame_KOI.exe
+C:\Users\lifei\Desktop\programming\csharp\Do-you-know-the-way\CodingGame_KOI\obj\Debug\CodingGame_KOI.pdb

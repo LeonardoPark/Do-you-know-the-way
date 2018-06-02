@@ -12,7 +12,7 @@ namespace CodingGame_KOI.game
 
         // Constants
         private static int STEP_SIZE = 10; // the distance when character move.
-        private static int MOVE_SPEED = 50; // milliseconds
+        private static int MOVE_SPEED = 50; // least 10 milliseconds over.
 
         // Character's state
         private int x, y;
@@ -74,14 +74,16 @@ namespace CodingGame_KOI.game
             }
         }
 
-        public void move(Character.DIRECTION dir)
+        public bool move(Character.DIRECTION dir)
         {
             if (!isMoved)
             {
                 ChDirection = dir;
                 isMoved = true;
                 tmMove.Enabled = true;
+                return true;
             }
+            return false;
         }
 
         public int ChNo

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="communication\Bluetooth.cs" />
     <Compile Include="forms\frmGame.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -50,6 +51,7 @@
       <DependentUpon>frmGame.cs</DependentUpon>
     </Compile>
     <Compile Include="game\Character.cs" />
+    <Compile Include="forms\CodeblockManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="forms\frmGame.resx">
@@ -80,6 +82,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\characters.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\codeblocks.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\down.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\left.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\right.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\up.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
