@@ -12,7 +12,7 @@ namespace CodingGame_KOI.game
 
         // Constants
         private static int STEP_SIZE = 10; // the distance when character move.
-        private static int MOVE_SPEED = 50; // least 10 milliseconds over.
+        private static int MOVE_SPEED = 100; // least 10 milliseconds over.
 
         // Character's state
         private int x, y;

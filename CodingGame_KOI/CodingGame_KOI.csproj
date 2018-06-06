@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="communication\Bluetooth.cs" />
+    <Compile Include="communication\SerialCommunication.cs" />
     <Compile Include="forms\frmGame.cs">
       <SubType>Form</SubType>
     </Compile>

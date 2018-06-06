@@ -14,13 +14,13 @@ namespace CodingGame_KOI
     public partial class frmGame : Form
     {
         // constanats
-        private const int REFRESH_TIME = 10;
-        private const string BT_DATA_UP = "1";
-        private const string BT_DATA_DOWN = "2";
-        private const string BT_DATA_LEFT = "3";
-        private const string BT_DATA_RIGHT = "4";
-        private const string BT_DATA_REMOVE = "5";
-        private const string BT_DATA_RUN = "6";
+        private const int REFRESH_TIME = 200;
+        private const string DATA_UP = "1";
+        private const string DATA_DOWN = "2";
+        private const string DATA_LEFT = "3";
+        private const string DATA_RIGHT = "4";
+        private const string DATA_REMOVE = "5";
+        private const string DATA_RUN = "6";
 
         // the objects that related game.
         private bool isRunning = false;
@@ -31,7 +31,7 @@ namespace CodingGame_KOI
         // objects
         private CodeblockManager codeblockManager = null;
         private List<Character.DIRECTION> codeblocks = null;
-        private Bluetooth bluetooth = null;
+        private SerialCommunication bluetooth = null;
 
         public frmGame()
         {
@@ -172,7 +172,7 @@ namespace CodingGame_KOI
                 bluetooth.close();
                 bluetooth = null;
             }
-            bluetooth = new Bluetooth(this, txtSerialPortName.Text, bluetoothDataReceive);
+            bluetooth = new SerialCommunication(this, txtSerialPortName.Text, bluetoothDataReceive);
             try
             {
                 bluetooth.open();
@@ -190,22 +190,22 @@ namespace CodingGame_KOI
         {
             switch(msg)
             {
-                case BT_DATA_UP:
+                case DATA_UP:
                     codeblockManager.addBlock(Character.DIRECTION.UP);
                     break;
-                case BT_DATA_DOWN:
+                case DATA_DOWN:
                     codeblockManager.addBlock(Character.DIRECTION.DOWN);
                     break;
-                case BT_DATA_LEFT:
+                case DATA_LEFT:
                     codeblockManager.addBlock(Character.DIRECTION.LEFT);
                     break;
-                case BT_DATA_RIGHT:
+                case DATA_RIGHT:
                     codeblockManager.addBlock(Character.DIRECTION.RIGHT);
                     break;
-                case BT_DATA_REMOVE:
+                case DATA_REMOVE:
                     codeblockManager.removeLastBlock();
                     break;
-                case BT_DATA_RUN:
+                case DATA_RUN:
                     execute();
                     break;
             }
