@@ -31,9 +31,9 @@
             this.gameScreen = new System.Windows.Forms.PictureBox();
             this.picCodeblocks = new System.Windows.Forms.PictureBox();
             this.pnSerialSetting = new System.Windows.Forms.Panel();
-            this.txtSerialPortName = new System.Windows.Forms.TextBox();
-            this.btnOpenSerial = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnOpenSerial = new System.Windows.Forms.Button();
+            this.txtSerialPortName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.gameScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCodeblocks)).BeginInit();
             this.pnSerialSetting.SuspendLayout();
@@ -42,10 +42,10 @@
             // gameScreen
             // 
             this.gameScreen.BackColor = System.Drawing.Color.White;
-            this.gameScreen.Location = new System.Drawing.Point(182, 0);
+            this.gameScreen.Location = new System.Drawing.Point(208, 0);
             this.gameScreen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gameScreen.Name = "gameScreen";
-            this.gameScreen.Size = new System.Drawing.Size(1155, 740);
+            this.gameScreen.Size = new System.Drawing.Size(600, 600);
             this.gameScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gameScreen.TabIndex = 0;
             this.gameScreen.TabStop = false;
@@ -54,9 +54,10 @@
             // picCodeblocks
             // 
             this.picCodeblocks.Image = global::CodingGame_KOI.Properties.Resources.codeblocks;
-            this.picCodeblocks.Location = new System.Drawing.Point(22, 12);
+            this.picCodeblocks.Location = new System.Drawing.Point(25, 15);
+            this.picCodeblocks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.picCodeblocks.Name = "picCodeblocks";
-            this.picCodeblocks.Size = new System.Drawing.Size(139, 76);
+            this.picCodeblocks.Size = new System.Drawing.Size(159, 95);
             this.picCodeblocks.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picCodeblocks.TabIndex = 1;
             this.picCodeblocks.TabStop = false;
@@ -66,47 +67,50 @@
             this.pnSerialSetting.Controls.Add(this.label1);
             this.pnSerialSetting.Controls.Add(this.btnOpenSerial);
             this.pnSerialSetting.Controls.Add(this.txtSerialPortName);
-            this.pnSerialSetting.Location = new System.Drawing.Point(500, 183);
+            this.pnSerialSetting.Location = new System.Drawing.Point(328, 241);
+            this.pnSerialSetting.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnSerialSetting.Name = "pnSerialSetting";
-            this.pnSerialSetting.Size = new System.Drawing.Size(372, 184);
+            this.pnSerialSetting.Size = new System.Drawing.Size(425, 230);
             this.pnSerialSetting.TabIndex = 2;
-            // 
-            // txtSerialPortName
-            // 
-            this.txtSerialPortName.Location = new System.Drawing.Point(50, 70);
-            this.txtSerialPortName.Name = "txtSerialPortName";
-            this.txtSerialPortName.Size = new System.Drawing.Size(264, 21);
-            this.txtSerialPortName.TabIndex = 0;
-            // 
-            // btnOpenSerial
-            // 
-            this.btnOpenSerial.BackColor = System.Drawing.Color.White;
-            this.btnOpenSerial.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenSerial.Location = new System.Drawing.Point(50, 98);
-            this.btnOpenSerial.Name = "btnOpenSerial";
-            this.btnOpenSerial.Size = new System.Drawing.Size(263, 35);
-            this.btnOpenSerial.TabIndex = 1;
-            this.btnOpenSerial.Text = "Start Coding";
-            this.btnOpenSerial.UseVisualStyleBackColor = false;
-            this.btnOpenSerial.Click += new System.EventHandler(this.btnOpenSerial_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Lucida Console", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(7, 44);
+            this.label1.Location = new System.Drawing.Point(8, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(362, 12);
+            this.label1.Size = new System.Drawing.Size(466, 15);
             this.label1.TabIndex = 2;
             this.label1.Text = "Enter the serial port name that bluetooth connected";
             // 
+            // btnOpenSerial
+            // 
+            this.btnOpenSerial.BackColor = System.Drawing.Color.White;
+            this.btnOpenSerial.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenSerial.Location = new System.Drawing.Point(57, 122);
+            this.btnOpenSerial.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnOpenSerial.Name = "btnOpenSerial";
+            this.btnOpenSerial.Size = new System.Drawing.Size(301, 44);
+            this.btnOpenSerial.TabIndex = 1;
+            this.btnOpenSerial.Text = "Start Coding";
+            this.btnOpenSerial.UseVisualStyleBackColor = false;
+            this.btnOpenSerial.Click += new System.EventHandler(this.btnOpenSerial_Click);
+            // 
+            // txtSerialPortName
+            // 
+            this.txtSerialPortName.Location = new System.Drawing.Point(57, 88);
+            this.txtSerialPortName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtSerialPortName.Name = "txtSerialPortName";
+            this.txtSerialPortName.Size = new System.Drawing.Size(301, 25);
+            this.txtSerialPortName.TabIndex = 0;
+            // 
             // frmGame
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1337, 740);
+            this.ClientSize = new System.Drawing.Size(1011, 852);
             this.Controls.Add(this.pnSerialSetting);
             this.Controls.Add(this.picCodeblocks);
             this.Controls.Add(this.gameScreen);

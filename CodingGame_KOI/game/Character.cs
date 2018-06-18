@@ -11,27 +11,28 @@ namespace CodingGame_KOI.game
         public enum DIRECTION { DOWN, LEFT, RIGHT, UP };
 
         // Constants
-        private static int STEP_SIZE = 10; // the distance when character move.
-        private static int MOVE_SPEED = 100; // least 10 milliseconds over.
+        private static int MOVE_SPEED = 250; // least 10 milliseconds over.
 
         // Character's state
         private int x, y;
+        private int stepSize;
         private int chNo, chMotion;
         private DIRECTION chDirection;
         private bool isMoved;
             
         private Timer tmMove; 
 
-        public Character() : this(0, 1, DIRECTION.DOWN)
+        public Character() : this(0, 1, DIRECTION.DOWN, 10)
         {
         }
 
-        public Character(int no, int motion, DIRECTION dir)
+        public Character(int no, int motion, DIRECTION dir, int stepSize)
         {
             isMoved = false;
             ChNo = no;
             ChMotion = motion;
             ChDirection = dir;
+            this.stepSize = stepSize/3;
             init();
         }
 
@@ -60,16 +61,16 @@ namespace CodingGame_KOI.game
             switch(ChDirection)
             {
                 case DIRECTION.DOWN:
-                    Y += STEP_SIZE;
+                    Y += stepSize;
                     break;
                 case DIRECTION.LEFT:
-                    X -= STEP_SIZE;
+                    X -= stepSize;
                     break;
                 case DIRECTION.RIGHT:
-                    X += STEP_SIZE;
+                    X += stepSize;
                     break;
                 case DIRECTION.UP:
-                    Y -= STEP_SIZE;
+                    Y -= stepSize;
                     break;
             }
         }
@@ -86,6 +87,18 @@ namespace CodingGame_KOI.game
             return false;
         }
 
+        public int StepSize
+        {
+            get
+            {
+                return stepSize;
+            }
+            set
+            {
+                this.stepSize = value;
+            }
+        }
+
         public int ChNo
         {
             get
@@ -95,6 +108,14 @@ namespace CodingGame_KOI.game
             set
             {
                 chNo = value;
+            }
+        }
+
+        public bool IsMove
+        {
+            get
+            {
+                return isMoved;
             }
         }
 

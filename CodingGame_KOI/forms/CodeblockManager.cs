@@ -62,7 +62,7 @@ namespace CodingGame_KOI
 
                 throw new Exception("not matched.");
             }
-            catch (Exception e)
+            catch
             {
                 return Character.DIRECTION.DOWN;
             }
@@ -130,7 +130,7 @@ namespace CodingGame_KOI
                 blockList.Add(picBlock);
                 frmGame.Controls.Add(picBlock);
             }
-            catch(Exception e)
+            catch
             {
                 // pass
             }

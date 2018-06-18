@@ -23,10 +23,13 @@ namespace CodingGame_KOI
         private const string DATA_RUN = "6";
 
         // the objects that related game.
+        private bool isInit = false;
         private bool isRunning = false;
         private Timer tmRefresh;
         private Timer tmRunner;
         private Character character;
+        private int[,] map;
+        private int stepsize;
 
         // objects
         private CodeblockManager codeblockManager = null;
@@ -40,9 +43,36 @@ namespace CodingGame_KOI
 
         private void frmGame_Load(object sender, EventArgs e)
         {
+            gameScreen.Height = 600;
+            gameScreen.Width = 600;
             codeblockManager = new CodeblockManager(this, this.picCodeblocks);
+            initMap();
             initCharacter();
             initEvent();
+            isInit = true;
+        }
+
+        private void initMap()
+        {
+            map = new int[,]
+            {
+                {1,1,1,1,0,0},
+                {0,0,0,1,1,0},
+                {0,0,0,0,1,0},
+                {0,0,1,1,1,0},
+                {0,0,1,0,0,0},
+                {0,0,1,1,1,2}
+            };
+        }
+
+        private bool checkCollision()
+        {
+            return map[character.Y / stepsize, character.X / stepsize] == 0;
+        }
+
+        private bool isEnd()
+        {
+            return map[character.Y / stepsize, character.X / stepsize] == 2;
         }
 
         private void initEvent()
@@ -79,8 +109,14 @@ namespace CodingGame_KOI
                     codeblocks.RemoveAt(0);
                 }
             }
-            else
+            else if (!character.IsMove)
             {
+                if (isEnd())
+                {
+                    MessageBox.Show("Game Clear!!!\n", "-Game-", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                character.X = 0;
+                character.Y = 0;
                 isRunning = false;
                 tmRunner.Enabled = false;
                 codeblocks = null;
@@ -94,7 +130,8 @@ namespace CodingGame_KOI
 
         private void initCharacter()
         {
-            this.character = new Character(4, 1, Character.DIRECTION.DOWN);
+            stepsize = gameScreen.Width/6;
+            this.character = new Character(4, 1, Character.DIRECTION.DOWN, stepsize);
         }
 
         private Bitmap loadImageFromResources(string resourceName)
@@ -107,12 +144,16 @@ namespace CodingGame_KOI
             Bitmap characters = loadImageFromResources("characters");
             int imgWidth, imgHeight;
             int chWidth, chHeight;
+            int oneWidth, oneHeight;
             
             imgWidth = characters.Width;
             imgHeight = characters.Height;
 
             chWidth = imgWidth / 12;
             chHeight = imgHeight / 8;
+
+            oneWidth = gameScreen.Width / 6;
+            oneHeight = gameScreen.Height / 6;
 
             Point imgSrcXY = new Point();
             Point imgDestXY = new Point();
@@ -125,7 +166,7 @@ namespace CodingGame_KOI
             imgDestXY.Y = character.Y;
 
             g.DrawImage(characters,
-                new Rectangle(imgDestXY, new Size(chWidth, chHeight)),
+                new Rectangle(imgDestXY, new Size(oneWidth, oneHeight)),
                 new Rectangle(imgSrcXY, new Size(chWidth, chHeight)),
                 GraphicsUnit.Pixel
             );
@@ -133,10 +174,12 @@ namespace CodingGame_KOI
 
         private void gameScreen_Paint(object sender, PaintEventArgs e)
         {
-            Bitmap bg = loadImageFromResources("background");
+            if (!isInit)
+                return;
+            Bitmap bg = loadImageFromResources("stage3");
             Graphics g = e.Graphics;
 
-            g.DrawImage(bg, new Rectangle(new Point(0, 0), gameScreen.Size));
+            g.DrawImage(bg, new Rectangle(new Point(0, 0), gameScreen.Size), new Rectangle(new Point(0, 0), bg.Size), GraphicsUnit.Pixel);
             drawCharacter(g);
         }
 
